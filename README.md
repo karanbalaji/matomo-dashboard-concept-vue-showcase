@@ -12,6 +12,42 @@ Creating an analytics dashboard that balances power with simplicity through:
 - User-centered design patterns
 - Modern web technologies
 
+## 🔄 Dashboard Evolution
+
+### Classic Matomo Dashboard
+![Classic Matomo Dashboard](./public/classic-matomo.png)
+The classic Matomo dashboard, while functional, presents data in a traditional format with:
+- Complex multi-level navigation structure
+- Dense information display with multiple tabs
+- Traditional table-based data presentation
+- Detailed but potentially overwhelming real-time data
+- Limited visual hierarchy in data presentation
+- Standard web analytics UI from the 2010s era
+
+### Modern Redesign
+![Modern Matomo Dashboard](./public/dashboard-preview.png)
+Our modern redesign transforms the experience with:
+- Clean, card-based metric displays showing key stats with trend indicators
+- Intuitive left sidebar navigation with clear iconography
+- Beautiful time-series visualization with smooth curves and proper scaling
+- Smart "Top Pages" section with clear metrics and trends
+- Minimalist design focusing on essential metrics:
+  - Visits: 15,480 (+12%)
+  - Unique Visitors: 12,749 (+8%)
+  - Actions per Visit: 3.2 (-2%)
+  - Bounce Rate: 42% (-5%)
+- Consistent color scheme for positive/negative trends
+- Proper spacing and typography for enhanced readability
+- Mobile-first responsive design principles
+
+Key Improvements:
+- **Information Architecture**: From complex nested menus to a clean, single-level sidebar navigation
+- **Data Visualization**: Enhanced from basic tables to modern, interactive area charts
+- **Metric Presentation**: Clear cards with trend indicators for immediate insights
+- **Visual Hierarchy**: Improved focus on key metrics with clear visual prominence
+- **User Experience**: Streamlined workflow with all tools easily accessible from the sidebar
+- **Branding**: Updated to "Matomo Interview" with a modern, professional look
+
 ## 🧠 UX Principles Applied
 
 ### 1. Hick's Law

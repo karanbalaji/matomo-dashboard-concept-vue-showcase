@@ -9,7 +9,7 @@
   >
     <div class="h-14 flex items-center justify-between px-3 border-b">
       <div v-if="expanded" class="flex items-center gap-2">
-        <span class="font-semibold">Matomo</span>
+        <span class="font-semibold">Matomo Interview</span>
       </div>
       <button
         @click="expanded = !expanded"
@@ -53,7 +53,15 @@ import {
   Activity,
   MousePointer,
   Target,
-  Map
+  Map,
+  ShoppingCart,
+  Filter,
+  FileText,
+  Film,
+  TestTube2,
+  LineChart,
+  Video,
+  BarChart3
 } from 'lucide-vue-next'
 
 const expanded = ref(true)
@@ -71,14 +79,19 @@ const items = [
     to: '/visitors'
   },
   {
-    label: 'Real-time',
-    icon: Activity,
-    to: '/real-time'
+    label: 'Behaviour',
+    icon: MousePointer,
+    to: '/behaviour'
   },
   {
-    label: 'Behavior',
-    icon: MousePointer,
-    to: '/behavior'
+    label: 'Acquisition',
+    icon: Filter,
+    to: '/acquisition'
+  },
+  {
+    label: 'Ecommerce',
+    icon: ShoppingCart,
+    to: '/ecommerce'
   },
   {
     label: 'Goals',
@@ -86,9 +99,39 @@ const items = [
     to: '/goals'
   },
   {
-    label: 'Locations',
-    icon: Map,
-    to: '/locations'
+    label: 'Funnels',
+    icon: Filter,
+    to: '/funnels'
+  },
+  {
+    label: 'Forms',
+    icon: FileText,
+    to: '/forms'
+  },
+  {
+    label: 'Media',
+    icon: Film,
+    to: '/media'
+  },
+  {
+    label: 'A/B Tests',
+    icon: TestTube2,
+    to: '/ab-tests'
+  },
+  {
+    label: 'Heatmaps',
+    icon: LineChart,
+    to: '/heatmaps'
+  },
+  {
+    label: 'Session Recordings',
+    icon: Video,
+    to: '/session-recordings'
+  },
+  {
+    label: 'Custom Reports',
+    icon: BarChart3,
+    to: '/custom-reports'
   }
 ]
 </script>
