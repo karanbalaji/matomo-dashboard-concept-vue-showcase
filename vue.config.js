@@ -2,5 +2,8 @@ const { defineConfig } = require('@vue/cli-service')
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  lintOnSave: false
+  lintOnSave: false,
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/matomo-dashboard-concept-vue-showcase/'
+    : '/'
 })
