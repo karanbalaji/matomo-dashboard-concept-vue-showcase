@@ -5,7 +5,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Dashboard',
-    component: Dashboard
+    component: Dashboard,
+    alias: ['/dashboard', '/matomo-dashboard-concept-vue-showcase']
   },
   {
     path: '/visitors',
@@ -43,8 +44,21 @@ const router = createRouter({
   history: createWebHistory('/matomo-dashboard-concept-vue-showcase/'),
   routes,
   scrollBehavior(to, from, savedPosition) {
-    return savedPosition || { top: 0 }
+    if (savedPosition) {
+      return savedPosition
+    }
+    return { top: 0 }
   }
+})
+
+// Navigation guard to ensure dashboard is loaded
+router.beforeEach((to, from, next) => {
+  // If it's the root path with no route, load dashboard
+  if (to.fullPath === '/matomo-dashboard-concept-vue-showcase/') {
+    next({ name: 'Dashboard' })
+    return
+  }
+  next()
 })
 
 export default router
