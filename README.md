@@ -1,6 +1,6 @@
 # Matomo Analytics Dashboard: A UX Engineering Showcase
 
-![Matomo Dashboard Preview](./public/dashboard-preview.png)
+![image](https://github.com/user-attachments/assets/5017369a-70f8-4b91-a90d-028d9a4b01f8)
 
 A modern, user-centric analytics dashboard built with Vue.js, showcasing UX engineering principles and best practices. This project demonstrates the application of cognitive psychology and user experience laws in creating an intuitive analytics interface.
 
@@ -15,7 +15,7 @@ Creating an analytics dashboard that balances power with simplicity through:
 ## 🔄 Dashboard Evolution
 
 ### Classic Matomo Dashboard
-![Classic Matomo Dashboard](./public/classic-matomo.png)
+![image](https://github.com/user-attachments/assets/2640ce2d-0154-4d5e-884e-126c0d6c217f)
 The classic Matomo dashboard, while functional, presents data in a traditional format with:
 - Complex multi-level navigation structure
 - Dense information display with multiple tabs
@@ -25,7 +25,8 @@ The classic Matomo dashboard, while functional, presents data in a traditional f
 - Standard web analytics UI from the 2010s era
 
 ### Modern Redesign
-![Modern Matomo Dashboard](./public/dashboard-preview.png)
+![image](https://github.com/user-attachments/assets/944de243-a954-47e0-a4c9-af0b0165c56f)
+
 Our modern redesign transforms the experience with:
 - Clean, card-based metric displays showing key stats with trend indicators
 - Intuitive left sidebar navigation with clear iconography
