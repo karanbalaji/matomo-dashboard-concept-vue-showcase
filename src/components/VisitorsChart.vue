@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-card rounded-lg p-4 shadow">
+  <div class="p-6 bg-white rounded-lg shadow-sm">
     <div class="mb-4">
-      <h3 class="text-lg font-semibold">Visitors Over Time</h3>
-      <p class="text-sm text-muted-foreground">Last 30 days of visitor activity</p>
+      <h3 class="text-lg font-medium">Visitors Over Time</h3>
+      <p class="text-sm text-gray-500">Last 30 days of visitor activity</p>
     </div>
-    <div class="h-[300px] w-full">
+    <div class="h-[300px]">
       <Line
         :data="chartData"
         :options="chartOptions"
@@ -13,8 +13,9 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from 'vue'
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import { Line } from 'vue-chartjs'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -26,9 +27,7 @@ import {
   Legend,
   Filler
 } from 'chart.js'
-import { Line } from 'vue-chartjs'
 
-// Register ChartJS components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -40,86 +39,73 @@ ChartJS.register(
   Filler
 )
 
-// Generate sample data
+// Generate last 30 days with more realistic data pattern
 const generateVisitorData = () => {
   const baseVisitors = 1000
-  const days = 30
-  const data = []
   const labels = []
+  const data = []
 
-  for (let i = days - 1; i >= 0; i--) {
+  for (let i = 29; i >= 0; i--) {
     const date = new Date()
     date.setDate(date.getDate() - i)
-    labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }))
     
-    // Generate random visitor count with trend and weekly pattern
-    const trend = Math.sin(i / 7) * 200 // Weekly pattern
-    const random = Math.random() * 300 - 150 // Random variation
+    // Create a more realistic data pattern with weekly trends
     const dayOfWeek = date.getDay()
-    const weekendDip = dayOfWeek === 0 || dayOfWeek === 6 ? -200 : 0 // Weekend dip
-    
-    data.push(Math.max(0, Math.round(baseVisitors + trend + random + weekendDip)))
+    const weekendMultiplier = dayOfWeek === 0 || dayOfWeek === 6 ? 1.5 : 1
+    const weeklyTrend = Math.sin(i / 7) * 200
+    const randomVariation = Math.random() * 100 - 50
+
+    const visitors = Math.max(0, Math.round(
+      baseVisitors + 
+      weeklyTrend * weekendMultiplier + 
+      randomVariation
+    ))
+
+    labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }))
+    data.push(visitors)
   }
 
-  return { data, labels }
+  return { labels, data }
 }
 
-const { data: visitorData, labels } = generateVisitorData()
+const { labels, data: visitorData } = generateVisitorData()
 
-const chartData = {
+const chartData = computed(() => ({
   labels,
   datasets: [
     {
       label: 'Visitors',
       data: visitorData,
       fill: true,
-      backgroundColor: 'rgba(59, 130, 246, 0.1)', // Light blue background
-      borderColor: 'rgb(59, 130, 246)', // Blue line
+      borderColor: '#3b82f6',
+      backgroundColor: 'rgba(59, 130, 246, 0.1)',
       tension: 0.4,
-      pointRadius: 2,
-      pointHoverRadius: 5
+      pointRadius: 0,
+      borderWidth: 2
     }
   ]
-}
+}))
 
 const chartOptions = {
   responsive: true,
-  maintainAspectRatio: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      display: false
+    }
+  },
   scales: {
-    y: {
-      beginAtZero: true,
-      grid: {
-        display: true,
-        color: 'rgba(0, 0, 0, 0.1)'
-      },
-      ticks: {
-        callback: (value) => value.toLocaleString()
-      }
-    },
     x: {
       grid: {
         display: false
       }
-    }
-  },
-  plugins: {
-    legend: {
-      display: false
     },
-    tooltip: {
-      backgroundColor: 'rgba(0, 0, 0, 0.8)',
-      titleColor: 'rgb(255, 255, 255)',
-      bodyColor: 'rgb(255, 255, 255)',
-      padding: 12,
-      displayColors: false,
-      callbacks: {
-        label: (context) => `${context.parsed.y.toLocaleString()} visitors`
+    y: {
+      beginAtZero: true,
+      grid: {
+        color: 'rgba(0, 0, 0, 0.05)'
       }
     }
-  },
-  interaction: {
-    intersect: false,
-    mode: 'index'
   }
 }
 </script>

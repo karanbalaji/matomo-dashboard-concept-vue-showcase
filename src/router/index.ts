@@ -1,41 +1,48 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Dashboard from '../views/Dashboard.vue'
 
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '') // Remove trailing slash if present
+
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
+    path: baseUrl,
+    name: 'Root',
+    redirect: `${baseUrl}/dashboard`
+  },
+  {
+    path: `${baseUrl}/dashboard`,
     name: 'Dashboard',
     component: Dashboard
   },
   {
-    path: '/visitors',
+    path: `${baseUrl}/visitors`,
     name: 'Visitors',
     component: () => import('../views/Visitors.vue')
   },
   {
-    path: '/real-time',
+    path: `${baseUrl}/real-time`,
     name: 'RealTime',
     component: () => import('../views/RealTime.vue')
   },
   {
-    path: '/behavior',
+    path: `${baseUrl}/behavior`,
     name: 'Behavior',
     component: () => import('../views/Behavior.vue')
   },
   {
-    path: '/goals',
+    path: `${baseUrl}/goals`,
     name: 'Goals',
     component: () => import('../views/Goals.vue')
   },
   {
-    path: '/locations',
+    path: `${baseUrl}/locations`,
     name: 'Locations',
     component: () => import('../views/Locations.vue')
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes
 })
 

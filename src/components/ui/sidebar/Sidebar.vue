@@ -67,71 +67,73 @@ import {
 const expanded = ref(true)
 const route = useRoute()
 
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
+
 const items = [
   {
     label: 'Dashboard',
     icon: LayoutDashboard,
-    to: '/'
+    to: `${baseUrl}/dashboard`
   },
   {
     label: 'Visitors',
     icon: Users,
-    to: '/visitors'
+    to: `${baseUrl}/visitors`
   },
   {
     label: 'Behaviour',
     icon: MousePointer,
-    to: '/behaviour'
+    to: `${baseUrl}/behavior`
   },
   {
     label: 'Acquisition',
     icon: Filter,
-    to: '/acquisition'
+    to: `${baseUrl}/acquisition`
   },
   {
     label: 'Ecommerce',
     icon: ShoppingCart,
-    to: '/ecommerce'
+    to: `${baseUrl}/ecommerce`
   },
   {
     label: 'Goals',
     icon: Target,
-    to: '/goals'
+    to: `${baseUrl}/goals`
   },
   {
     label: 'Funnels',
     icon: Filter,
-    to: '/funnels'
+    to: `${baseUrl}/funnels`
   },
   {
     label: 'Forms',
     icon: FileText,
-    to: '/forms'
+    to: `${baseUrl}/forms`
   },
   {
     label: 'Media',
     icon: Film,
-    to: '/media'
+    to: `${baseUrl}/media`
   },
   {
     label: 'A/B Tests',
     icon: TestTube2,
-    to: '/ab-tests'
+    to: `${baseUrl}/ab-tests`
   },
   {
     label: 'Heatmaps',
     icon: LineChart,
-    to: '/heatmaps'
+    to: `${baseUrl}/heatmaps`
   },
   {
     label: 'Session Recordings',
     icon: Video,
-    to: '/session-recordings'
+    to: `${baseUrl}/session-recordings`
   },
   {
     label: 'Custom Reports',
     icon: BarChart3,
-    to: '/custom-reports'
+    to: `${baseUrl}/custom-reports`
   }
 ]
 </script>
