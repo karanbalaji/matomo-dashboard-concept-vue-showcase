@@ -10,7 +10,7 @@
       </button>
 
       <!-- Search -->
-      <div class="flex-1 flex items-center">
+      <div class="flex-1 flex items-center gap-4">
         <div class="w-full max-w-sm flex items-center gap-2 px-3 py-1.5 text-sm rounded-md bg-accent/10">
           <Search class="h-4 w-4 text-muted-foreground" />
           <input
@@ -18,6 +18,73 @@
             placeholder="Search analytics..."
             class="flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
           />
+        </div>
+
+        <!-- Website Selector -->
+        <DropdownMenu>
+          <DropdownMenuTrigger class="flex items-center gap-2 px-3 py-1.5 text-sm rounded-md bg-accent/10">
+            <Globe class="h-4 w-4" />
+            <span>{{ selectedWebsite }}</span>
+            <ChevronDown class="h-4 w-4" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem v-for="site in websites" :key="site" @click="selectedWebsite = site">
+              {{ site }}
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        <!-- Date Navigation -->
+        <div class="flex items-center gap-2">
+          <button class="p-1.5 hover:bg-accent rounded-md">
+            <ChevronLeft class="h-4 w-4" />
+          </button>
+          <button class="px-3 py-1.5 text-sm rounded-md bg-accent/10 flex items-center gap-2">
+            <Calendar class="h-4 w-4" />
+            <span>{{ currentDate }}</span>
+          </button>
+          <button class="p-1.5 hover:bg-accent rounded-md">
+            <ChevronRight class="h-4 w-4" />
+          </button>
+        </div>
+
+        <!-- View Controls -->
+        <div class="flex items-center gap-2">
+          <DropdownMenu>
+            <DropdownMenuTrigger class="px-3 py-1.5 text-sm rounded-md bg-accent/10 flex items-center gap-2">
+              <Eye class="h-4 w-4" />
+              <span>{{ visitTypes.find(t => t.id === selectedVisitType)?.label }}</span>
+              <ChevronDown class="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem 
+                v-for="type in visitTypes" 
+                :key="type.id"
+                @click="selectedVisitType = type.id"
+                :class="{ 'bg-accent/50': selectedVisitType === type.id }"
+              >
+                {{ type.label }}
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger class="px-3 py-1.5 text-sm rounded-md bg-accent/10 flex items-center gap-2">
+              <LayoutDashboard class="h-4 w-4" />
+              <span>{{ viewTypes.find(t => t.id === selectedView)?.label }}</span>
+              <ChevronDown class="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem 
+                v-for="type in viewTypes" 
+                :key="type.id"
+                @click="selectedView = type.id"
+                :class="{ 'bg-accent/50': selectedView === type.id }"
+              >
+                {{ type.label }}
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 
@@ -74,7 +141,23 @@
 </template>
 
 <script setup lang="ts">
-import { Menu, Search, Bell, Settings, User, Settings2, LogOut } from 'lucide-vue-next'
+import { ref } from 'vue'
+import { 
+  Menu, 
+  Search, 
+  Bell, 
+  Settings, 
+  User, 
+  Settings2, 
+  LogOut,
+  ChevronLeft,
+  ChevronRight,
+  Calendar,
+  ChevronDown,
+  Globe,
+  Eye,
+  LayoutDashboard
+} from 'lucide-vue-next'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -83,6 +166,26 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu'
+
+const selectedWebsite = ref('GMAIL.COM')
+const websites = ['GMAIL.COM', 'EXAMPLE.COM', 'DEMO.COM']
+const currentDate = ref('2024-12-01')
+const selectedVisitType = ref('all')
+const selectedView = ref('dashboard')
+
+const visitTypes = [
+  { id: 'all', label: 'All Visits' },
+  { id: 'new', label: 'New Visitors' },
+  { id: 'returning', label: 'Returning Visitors' }
+]
+
+const viewTypes = [
+  { id: 'dashboard', label: 'Dashboard' },
+  { id: 'realtime', label: 'Real-time' },
+  { id: 'overview', label: 'Overview' }
+]
+
+defineEmits(['toggle-menu'])
 
 // Sample notifications - replace with real data
 const notifications = [
@@ -102,6 +205,4 @@ const notifications = [
     time: '3 hours ago'
   }
 ]
-
-defineEmits(['toggle-menu'])
 </script>
