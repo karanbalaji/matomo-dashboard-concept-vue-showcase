@@ -5,8 +5,13 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Dashboard',
-    component: Dashboard,
-    alias: ['/dashboard', '/matomo-dashboard-concept-vue-showcase']
+    component: Dashboard
+  },
+  // Add explicit route for the showcase path
+  {
+    path: '/matomo-dashboard-concept-vue-showcase',
+    name: 'ShowcaseDashboard',
+    component: Dashboard
   },
   {
     path: '/visitors',
@@ -44,21 +49,18 @@ const router = createRouter({
   history: createWebHistory('/matomo-dashboard-concept-vue-showcase/'),
   routes,
   scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    }
-    return { top: 0 }
+    return savedPosition || { top: 0 }
   }
 })
 
-// Navigation guard to ensure dashboard is loaded
+// Navigation guard to handle initial load
 router.beforeEach((to, from, next) => {
-  // If it's the root path with no route, load dashboard
+  // If accessing the root of the showcase, show dashboard
   if (to.fullPath === '/matomo-dashboard-concept-vue-showcase/') {
-    next({ name: 'Dashboard' })
-    return
+    next('/')
+  } else {
+    next()
   }
-  next()
 })
 
 export default router
