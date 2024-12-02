@@ -11,6 +11,19 @@
 
       <!-- Search -->
       <div class="flex-1 flex flex-wrap items-center gap-2 sm:gap-4">
+        <DropdownMenu>
+          <DropdownMenuTrigger class="flex items-center gap-2 px-3 py-1.5 text-sm rounded-md bg-green-500/5 hover:bg-green-500/10 transition-colors">
+            <Globe class="h-4 w-4 text-green-600/70" />
+            <span class="text-green-600/70">{{ selectedWebsite }}</span>
+            <ChevronDown class="h-4 w-4 text-green-600/50" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem v-for="site in websites" :key="site" @click="selectedWebsite = site">
+              {{ site }}
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
         <div class="flex-1 min-w-[160px] sm:min-w-[200px] flex items-center gap-2 px-2 sm:px-3 py-1.5 text-sm rounded-md bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
           <Search class="h-4 w-4 text-blue-600/70" />
           <input
