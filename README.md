@@ -4,7 +4,8 @@
 [![Blog](https://img.shields.io/badge/Blog-Visit-orange?style=for-the-badge&logo=blogger)](https://blog.karanbalaji.com/)
 [![Demo](https://img.shields.io/badge/Demo-Live_Preview-green?style=for-the-badge&logo=github)](https://karanbalaji.github.io/matomo-dashboard-concept-vue-showcase/)
 
-![image](https://github.com/user-attachments/assets/5017369a-70f8-4b91-a90d-028d9a4b01f8)
+![image](https://github.com/user-attachments/assets/818b515b-18aa-47df-a100-fc6fd97ee340)
+
 
 A modern, user-centric analytics dashboard built with Vue.js, showcasing UX engineering principles and best practices. This project demonstrates the application of cognitive psychology and user experience laws in creating an intuitive analytics interface.
 
@@ -29,7 +30,7 @@ The classic Matomo dashboard, while functional, presents data in a traditional f
 - Standard web analytics UI from the 2010s era
 
 ### Modern Redesign
-![image](https://github.com/user-attachments/assets/944de243-a954-47e0-a4c9-af0b0165c56f)
+![image](https://github.com/user-attachments/assets/b045e46c-e085-4535-ba01-0d6ea2d65768)
 
 Our modern redesign transforms the experience with:
 - Clean, card-based metric displays showing key stats with trend indicators
