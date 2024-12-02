@@ -2,21 +2,21 @@
   <nav
     :class="[
       'flex flex-col h-screen',
-      'border-r bg-background',
+      'border-r bg-white',
       expanded ? 'w-60' : 'w-14',
       'transition-all duration-300 ease-in-out'
     ]"
   >
     <div class="h-14 flex items-center justify-between px-3 border-b">
       <div v-if="expanded" class="flex items-center gap-2">
-        <span class="font-semibold">Matomo Interview</span>
+        <span class="font-semibold text-gray-900">Matomo Interview</span>
       </div>
       <button
         @click="expanded = !expanded"
-        class="h-6 w-6 flex items-center justify-center rounded-md hover:bg-accent"
+        class="h-6 w-6 flex items-center justify-center rounded-md hover:bg-blue-500/5"
       >
-        <ChevronLeft v-if="expanded" class="h-4 w-4" />
-        <ChevronRight v-else class="h-4 w-4" />
+        <ChevronLeft v-if="expanded" class="h-4 w-4 text-blue-600/70" />
+        <ChevronRight v-else class="h-4 w-4 text-blue-600/70" />
       </button>
     </div>
 
@@ -29,12 +29,12 @@
           :class="[
             'flex items-center gap-3 rounded-md px-2 py-1.5',
             'text-sm font-medium',
-            'hover:bg-accent hover:text-accent-foreground',
+            'hover:bg-blue-500/5',
             'transition-colors duration-200',
-            $route.path === item.to ? 'bg-accent/50' : ''
+            $route.path === item.to ? 'bg-blue-500/10 text-blue-600/70' : 'text-gray-600'
           ]"
         >
-          <component :is="item.icon" class="h-4 w-4" />
+          <component :is="item.icon" class="h-4 w-4" :class="$route.path === item.to ? 'text-blue-600/70' : 'text-gray-600'" />
           <span v-if="expanded">{{ item.label }}</span>
         </router-link>
       </div>

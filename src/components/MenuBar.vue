@@ -1,31 +1,93 @@
 <template>
-  <header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-    <div class="flex h-14 items-center gap-4 px-4 sm:px-6">
+  <header class="sticky top-0 z-50 w-full border-b bg-white backdrop-blur supports-[backdrop-filter]:bg-white">
+    <div class="flex h-14 items-center gap-2 sm:gap-4 px-2 sm:px-6">
       <!-- Mobile Menu Button -->
       <button
-        class="lg:hidden p-2 hover:bg-accent rounded-md"
+        class="lg:hidden p-2 hover:bg-blue-500/5 rounded-md"
         @click="$emit('toggle-menu')"
       >
         <Menu class="h-5 w-5" />
       </button>
 
       <!-- Search -->
-      <div class="flex-1 flex items-center gap-4">
-        <div class="w-full max-w-sm flex items-center gap-2 px-3 py-1.5 text-sm rounded-md bg-accent/10">
-          <Search class="h-4 w-4 text-muted-foreground" />
+      <div class="flex-1 flex flex-wrap items-center gap-2 sm:gap-4">
+        <div class="flex-1 min-w-[160px] sm:min-w-[200px] flex items-center gap-2 px-2 sm:px-3 py-1.5 text-sm rounded-md bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
+          <Search class="h-4 w-4 text-blue-600/70" />
           <input
             type="text"
             placeholder="Search analytics..."
-            class="flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
+            class="w-full flex-1 bg-transparent outline-none placeholder:text-blue-600/50"
           />
         </div>
 
-        <!-- Website Selector -->
+        <!-- Date Navigation - Compact on Mobile -->
+        <div class="flex items-center">
+          <button class="p-1.5 hover:bg-blue-500/5 rounded-md transition-colors">
+            <ChevronLeft class="h-4 w-4 text-blue-600/70" />
+          </button>
+          <button class="sm:hidden p-1.5 hover:bg-blue-500/5 rounded-md transition-colors">
+            <Calendar class="h-4 w-4 text-blue-600/70" />
+          </button>
+          <button class="hidden sm:flex px-3 py-1.5 text-sm rounded-md bg-blue-500/5 hover:bg-blue-500/10 transition-colors items-center gap-2">
+            <Calendar class="h-4 w-4 text-blue-600/70" />
+            <span class="text-blue-600/70">{{ currentDate }}</span>
+          </button>
+          <button class="p-1.5 hover:bg-blue-500/5 rounded-md transition-colors">
+            <ChevronRight class="h-4 w-4 text-blue-600/70" />
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile More Menu -->
+      <DropdownMenu>
+        <DropdownMenuTrigger class="lg:hidden p-2 hover:bg-blue-500/5 rounded-md">
+          <MoreVertical class="h-5 w-5 text-gray-600" />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" class="w-64">
+          <!-- Website Selection -->
+          <DropdownMenuLabel class="text-sm font-medium text-gray-500">Website</DropdownMenuLabel>
+          <DropdownMenuItem v-for="site in websites" :key="site" @click="selectedWebsite = site">
+            <Globe class="h-4 w-4 mr-2 text-green-600/70" />
+            {{ site }}
+          </DropdownMenuItem>
+          
+          <DropdownMenuSeparator />
+          
+          <!-- View Type Selection -->
+          <DropdownMenuLabel class="text-sm font-medium text-gray-500">View Type</DropdownMenuLabel>
+          <DropdownMenuItem 
+            v-for="type in viewTypes" 
+            :key="type.id"
+            @click="selectedView = type.id"
+            :class="{ 'bg-blue-500/5': selectedView === type.id }"
+          >
+            <LayoutDashboard class="h-4 w-4 mr-2 text-blue-600/70" />
+            {{ type.label }}
+          </DropdownMenuItem>
+          
+          <DropdownMenuSeparator />
+          
+          <!-- Visit Type Selection -->
+          <DropdownMenuLabel class="text-sm font-medium text-gray-500">Visit Type</DropdownMenuLabel>
+          <DropdownMenuItem 
+            v-for="type in visitTypes" 
+            :key="type.id"
+            @click="selectedVisitType = type.id"
+            :class="{ 'bg-green-500/5': selectedVisitType === type.id }"
+          >
+            <Eye class="h-4 w-4 mr-2 text-green-600/70" />
+            {{ type.label }}
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <!-- Desktop Controls -->
+      <div class="hidden lg:flex items-center gap-4">
         <DropdownMenu>
-          <DropdownMenuTrigger class="flex items-center gap-2 px-3 py-1.5 text-sm rounded-md bg-accent/10">
-            <Globe class="h-4 w-4" />
-            <span>{{ selectedWebsite }}</span>
-            <ChevronDown class="h-4 w-4" />
+          <DropdownMenuTrigger class="flex items-center gap-2 px-3 py-1.5 text-sm rounded-md bg-green-500/5 hover:bg-green-500/10 transition-colors">
+            <Globe class="h-4 w-4 text-green-600/70" />
+            <span class="text-green-600/70">{{ selectedWebsite }}</span>
+            <ChevronDown class="h-4 w-4 text-green-600/50" />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuItem v-for="site in websites" :key="site" @click="selectedWebsite = site">
@@ -34,68 +96,51 @@
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <!-- Date Navigation -->
-        <div class="flex items-center gap-2">
-          <button class="p-1.5 hover:bg-accent rounded-md">
-            <ChevronLeft class="h-4 w-4" />
-          </button>
-          <button class="px-3 py-1.5 text-sm rounded-md bg-accent/10 flex items-center gap-2">
-            <Calendar class="h-4 w-4" />
-            <span>{{ currentDate }}</span>
-          </button>
-          <button class="p-1.5 hover:bg-accent rounded-md">
-            <ChevronRight class="h-4 w-4" />
-          </button>
-        </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger class="px-3 py-1.5 text-sm rounded-md bg-green-500/5 hover:bg-green-500/10 transition-colors flex items-center gap-2">
+            <Eye class="h-4 w-4 text-green-600/70" />
+            <span class="text-green-600/70">{{ visitTypes.find(t => t.id === selectedVisitType)?.label }}</span>
+            <ChevronDown class="h-4 w-4 text-green-600/50" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem 
+              v-for="type in visitTypes" 
+              :key="type.id"
+              @click="selectedVisitType = type.id"
+              :class="{ 'bg-green-500/5': selectedVisitType === type.id }"
+            >
+              {{ type.label }}
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
 
-        <!-- View Controls -->
-        <div class="flex items-center gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger class="px-3 py-1.5 text-sm rounded-md bg-accent/10 flex items-center gap-2">
-              <Eye class="h-4 w-4" />
-              <span>{{ visitTypes.find(t => t.id === selectedVisitType)?.label }}</span>
-              <ChevronDown class="h-4 w-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem 
-                v-for="type in visitTypes" 
-                :key="type.id"
-                @click="selectedVisitType = type.id"
-                :class="{ 'bg-accent/50': selectedVisitType === type.id }"
-              >
-                {{ type.label }}
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger class="px-3 py-1.5 text-sm rounded-md bg-accent/10 flex items-center gap-2">
-              <LayoutDashboard class="h-4 w-4" />
-              <span>{{ viewTypes.find(t => t.id === selectedView)?.label }}</span>
-              <ChevronDown class="h-4 w-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem 
-                v-for="type in viewTypes" 
-                :key="type.id"
-                @click="selectedView = type.id"
-                :class="{ 'bg-accent/50': selectedView === type.id }"
-              >
-                {{ type.label }}
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger class="px-3 py-1.5 text-sm rounded-md bg-blue-500/5 hover:bg-blue-500/10 transition-colors flex items-center gap-2">
+            <LayoutDashboard class="h-4 w-4 text-blue-600/70" />
+            <span class="text-blue-600/70">{{ viewTypes.find(t => t.id === selectedView)?.label }}</span>
+            <ChevronDown class="h-4 w-4 text-blue-600/50" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem 
+              v-for="type in viewTypes" 
+              :key="type.id"
+              @click="selectedView = type.id"
+              :class="{ 'bg-blue-500/5': selectedView === type.id }"
+            >
+              {{ type.label }}
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
 
       <!-- Right Side Icons -->
       <div class="flex items-center gap-2">
         <!-- Notifications -->
         <DropdownMenu>
-          <DropdownMenuTrigger class="p-2 hover:bg-accent rounded-md">
+          <DropdownMenuTrigger class="p-2 hover:bg-blue-500/5 rounded-md transition-colors">
             <div class="relative">
-              <Bell class="h-5 w-5" />
-              <span class="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-red-500"></span>
+              <Bell class="h-5 w-5 text-gray-600" />
+              <span class="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-blue-600/70"></span>
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" class="w-80">
@@ -105,7 +150,7 @@
               <DropdownMenuItem v-for="n in notifications" :key="n.id">
                 <div class="flex flex-col gap-1">
                   <p class="text-sm font-medium">{{ n.title }}</p>
-                  <p class="text-xs text-muted-foreground">{{ n.time }}</p>
+                  <p class="text-xs text-gray-500">{{ n.time }}</p>
                 </div>
               </DropdownMenuItem>
             </div>
@@ -114,8 +159,8 @@
 
         <!-- Settings -->
         <DropdownMenu>
-          <DropdownMenuTrigger class="p-2 hover:bg-accent rounded-md">
-            <Settings class="h-5 w-5" />
+          <DropdownMenuTrigger class="p-2 hover:bg-blue-500/5 rounded-md transition-colors">
+            <Settings class="h-5 w-5 text-gray-600" />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Settings</DropdownMenuLabel>
@@ -156,7 +201,8 @@ import {
   ChevronDown,
   Globe,
   Eye,
-  LayoutDashboard
+  LayoutDashboard,
+  MoreVertical
 } from 'lucide-vue-next'
 import {
   DropdownMenu,

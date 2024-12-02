@@ -21,6 +21,12 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        matomo: {
+          blue: "hsl(var(--matomo-blue))",
+          orange: "hsl(var(--matomo-orange))",
+          green: "hsl(var(--matomo-green))",
+          teal: "hsl(var(--matomo-teal))",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
