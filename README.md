@@ -1,4 +1,5 @@
 # Matomo Analytics Dashboard: A UX Engineering Showcase
+[![Project Management](https://img.shields.io/badge/Kanban-Project_Board-blue?style=for-the-badge&logo=github)](https://github.com/users/karanbalaji/projects/4)
 
 ![image](https://github.com/user-attachments/assets/5017369a-70f8-4b91-a90d-028d9a4b01f8)
 
