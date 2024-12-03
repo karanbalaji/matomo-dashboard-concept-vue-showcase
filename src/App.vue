@@ -25,6 +25,9 @@
           <component :is="Component" />
         </router-view>
       </main>
+      
+      <!-- Bottom Navigation for Mobile -->
+      <BottomNavigation @toggle-menu="isOpen = !isOpen" />
     </div>
   </div>
 </template>
@@ -38,6 +41,7 @@ import SheetContent from '@/components/ui/sheet/SheetContent.vue'
 import SheetTrigger from '@/components/ui/sheet/SheetTrigger.vue'
 import Sidebar from '@/components/ui/sidebar/Sidebar.vue'
 import MenuBar from '@/components/MenuBar.vue'
+import BottomNavigation from '@/components/BottomNavigation.vue'
 
 const router = useRouter()
 const isOpen = ref(false)
