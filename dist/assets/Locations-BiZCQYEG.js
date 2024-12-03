@@ -1,0 +1,1 @@
+import{_ as t,c as a,a as o,o as n}from"./index-DSDZbcF-.js";const s={name:"Locations"};function r(c,e,i,l,p,d){return n(),a("div",null,e[0]||(e[0]=[o("h2",null,"Locations",-1),o("p",null,"Geographic visitor data will be implemented here",-1)]))}const u=t(s,[["render",r]]);export{u as default};

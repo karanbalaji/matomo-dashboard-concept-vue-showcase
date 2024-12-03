@@ -1,0 +1,1 @@
+import{_ as o,c as r,a,o as n}from"./index-DSDZbcF-.js";const s={name:"Behavior"};function t(l,e,i,c,p,d){return n(),r("div",null,e[0]||(e[0]=[a("h2",null,"Behavior Analysis",-1),a("p",null,"User behavior analytics will be implemented here",-1)]))}const u=o(s,[["render",t]]);export{u as default};
