@@ -2,7 +2,7 @@
 [![Project Management](https://img.shields.io/badge/Kanban-Project_Board-blue?style=for-the-badge&logo=github)](https://github.com/users/karanbalaji/projects/4)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/karanbalaji/)
 [![Blog](https://img.shields.io/badge/Blog-Visit-orange?style=for-the-badge&logo=blogger)](https://blog.karanbalaji.com/)
-[![Demo](https://img.shields.io/badge/Demo-Live_Preview-green?style=for-the-badge&logo=github)](https://karanbalaji.github.io/matomo-dashboard-concept-vue-showcase/)
+[![Demo](https://img.shields.io/badge/Demo-Live_Preview-green?style=for-the-badge&logo=github)](https://matomo.karanbalaji.com/)
 
 ![image](https://github.com/user-attachments/assets/818b515b-18aa-47df-a100-fc6fd97ee340)
 
