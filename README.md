@@ -47,6 +47,10 @@ Our modern redesign transforms the experience with:
 - Mobile-first responsive design principles
 - Vue Shadcn UI components for a consistent and accessible design system
 
+  ### Mobile centric Using Fitt's law
+  ![image](https://github.com/user-attachments/assets/a3dca38a-bff9-4c71-8fb8-c3a03ad46395)
+
+
 Key Improvements:
 - **Information Architecture**: From complex nested menus to a clean, single-level sidebar navigation
 - **Data Visualization**: Enhanced from basic tables to modern, interactive area charts
