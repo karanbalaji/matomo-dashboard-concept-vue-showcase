@@ -61,7 +61,7 @@
         </DropdownMenu>
 
         <!-- Mobile More Menu -->
-        <DropdownMenu>
+        <DropdownMenu class="lg:hidden">
           <DropdownMenuTrigger class="p-2 hover:bg-blue-500/5 rounded-md">
             <MoreVertical class="h-5 w-5 text-gray-600" />
           </DropdownMenuTrigger>
