@@ -1,0 +1,1 @@
+import{_ as n,c as a,a as o,o as s}from"./index-DSDZbcF-.js";const l={name:"Goals"};function t(r,e,c,p,i,d){return s(),a("div",null,e[0]||(e[0]=[o("h2",null,"Goals",-1),o("p",null,"Conversion goals and tracking will be implemented here",-1)]))}const u=n(l,[["render",t]]);export{u as default};

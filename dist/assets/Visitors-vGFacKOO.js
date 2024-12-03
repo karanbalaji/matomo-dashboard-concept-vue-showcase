@@ -1,0 +1,1 @@
+import{_ as t,c as o,a as s,o as r}from"./index-DSDZbcF-.js";const i={name:"Visitors"};function n(a,e,l,c,p,d){return r(),o("div",null,e[0]||(e[0]=[s("h2",null,"Visitors",-1),s("p",null,"Visitor statistics will be implemented here",-1)]))}const u=t(i,[["render",n]]);export{u as default};
