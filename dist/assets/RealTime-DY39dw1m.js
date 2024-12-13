@@ -1,0 +1,1 @@
+import{_ as t,c as l,a,o as n}from"./index-DSDZbcF-.js";const o={name:"RealTime"};function s(r,e,i,c,m,p){return n(),l("div",null,e[0]||(e[0]=[a("h2",null,"Real-Time Analytics",-1),a("p",null,"Real-time visitor data will be implemented here",-1)]))}const u=t(o,[["render",s]]);export{u as default};
